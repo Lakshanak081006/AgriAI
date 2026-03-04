@@ -1,0 +1,97 @@
+{% extends 'prediction/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center animate-fade-in">
+        <div class="hero-section">
+            <h1 class="hero-title">Protect Your Harvest</h1>
+            <p class="hero-subtitle">Upload an image of your tomato leaf or fruit to identify diseases instantly and get
+                expert treatment recommendations.</p>
+        </div>
+
+        <div class="premium-card p-5">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-4 text-start">
+                    {{ form|crispy }}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Analyze Leaf Health</button>
+            </form>
+        </div>
+
+        <div class="mt-5 row text-start">
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <div class="h3 text-primary mb-3">01</div>
+                        <h5 class="fw-bold">Upload Image</h5>
+                        <p class="text-muted">Take a clear photo of the affected tomato plant part.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <div class="h3 text-primary mb-3">02</div>
+                        <h5 class="fw-bold">AI Analysis</h5>
+                        <p class="text-muted">Our advanced CNN model analyzes the patterns in seconds.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card border-0 bg-transparent">
+                    <div class="card-body">
+                        <div class="h3 text-primary mb-3">03</div>
+                        <h5 class="fw-bold">Get Solution</h5>
+                        <p class="text-muted">Receive detailed treatment and prevention plans.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay"
+    class="d-none position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+    style="background: rgba(255, 255, 255, 0.85); z-index: 2000; backdrop-filter: blur(5px);">
+    <div class="text-center">
+        <div class="spinner-border text-primary mb-3" role="status"
+            style="width: 4rem; height: 4rem; border-width: 0.3em;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <h3 class="fw-bold text-dark animate-pulse">Analyzing Image...</h3>
+        <p class="text-muted">Our AI is checking for diseases</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        const overlay = document.getElementById('loadingOverlay');
+
+        if (form) {
+            form.addEventListener('submit', function () {
+                // Show overlay
+                overlay.classList.remove('d-none');
+            });
+        }
+    });
+
+    // Add simple pulse animation
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse {
+            animation: pulse 1.5s infinite;
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+{% endblock %}

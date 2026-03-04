@@ -1,0 +1,26 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+staticfiles/
+
+# Virtual Environment
+venv/
+env/
+.env
+agri/
+
+# PyCharm / VSCode
+.idea/
+.vscode/
+
+# ML Models
+*.h5
+keras_Model.h5
+
+# OS generated files
+.DS_Store
+Thumbs.db
