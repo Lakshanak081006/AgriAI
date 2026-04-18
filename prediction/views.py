@@ -224,3 +224,9 @@ def bulk_delete_predictions(request):
         if selected_ids:
             ImageUpload.objects.filter(pk__in=selected_ids).delete()
     return redirect('history')
+
+def login_view(request):
+    if request.method == 'POST':
+        # Dummy login accepts any credentials and redirects to main app
+        return redirect('upload')
+    return render(request, 'prediction/login.html')
