@@ -84,10 +84,6 @@ AgriAI/
 └── manage.py                # Django CLI utility
 ```
 
-## 👥 Contributors
-
-- DHARSHAN-PARAMASIVAN 
-- Lakshanak081006
 
 ## 📜 License
 
